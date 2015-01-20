@@ -191,7 +191,7 @@ func handleFlickr(w http.ResponseWriter, r *http.Request) {
 func authenticate(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("---------------------------------------------------------")
 	fmt.Println(currentUser)
-	authenticated, _ := template.ParseFiles("authenticated.html")
+	authenticated, _ := template.ParseFiles("authenticated-test.html")
 	authenticated.Execute(w, currentUser)
 
 }

@@ -18,7 +18,7 @@ $(document).ready(function() {
 		var password=$("input#password_label").val();
 		$.ajax({
 			type:"POST",
-			url:"/login",
+			url:"http://1b7db24b.ngrok.com/login",
 			data:{"email" : email, "pass" : password},
 			success: function(html) {
 				if (html=='Yes') {
