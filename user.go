@@ -393,11 +393,13 @@ func handleVideos(w http.ResponseWriter, r *http.Request) {
 
 func handleCms(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "cookie")
-	currentUser := session.Values["user"].(string)
-	u := findUser(dbConnection, currentUser)
-
-	if u == nil {
+	u := &User{}
+	if session.Values["user"] == nil {
 		u = &User{}
+	} else if session.Values["user"].(string) == "" {
+		u = &User{}
+	} else {
+		u = findUser(dbConnection, session.Values["user"].(string))
 	}
 
 	var p DisplayPhotos
@@ -803,7 +805,9 @@ func handleLogout(w http.ResponseWriter, r *http.Request) {
 func checkLoggedIn(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "cookie")
 
-	if session.Values["user"].(string) == "" {
+	if session.Values["user"] == nil {
+		fmt.Fprintf(w, "No")
+	} else if session.Values["user"].(string) == "" {
 		fmt.Fprintf(w, "No")
 	} else {
 		message := "Yes," + findUser(dbConnection, session.Values["user"].(string)).FirstName
