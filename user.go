@@ -549,7 +549,7 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 		session.Save(r, w)
 	}
 
-	authenticated, _ := template.ParseFiles("gmsHome.html")
+	authenticated, _ := template.ParseFiles("index.html")
 	authenticated.Execute(w, session.Values["user"].(string))
 
 }
