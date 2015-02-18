@@ -290,7 +290,11 @@ func handleFlickrNews(w http.ResponseWriter, r *http.Request) {
 	} else if strings.HasPrefix(request, "getTags") {
 		input := request[7:]
 		fmt.Println("in else" + input)
-		s = "Boxing 5,Tennis 7,Cycling 13,maximum 13"
+		if input == "Commonwealth Games" || input == "commonwealth games" {
+			s = "Boxing 5,Tennis 7,Cycling 13,maximum 13"
+		} else {
+			s = "No content found with requested tag"
+		}
 
 	} else {
 
@@ -337,7 +341,7 @@ func handleVideos(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
 	start, _ := strconv.Atoi(r.FormValue("req"))
-	limit := 3
+	limit := 9
 	session, _ := store.Get(r, "cookie")
 	currentUser := session.Values["user"].(string)
 	u := findUser(dbConnection, currentUser)
@@ -604,7 +608,7 @@ func handleUserProfile(w http.ResponseWriter, r *http.Request) {
 	st, _ := strconv.Atoi(start)
 	nMod, _ := strconv.Atoi(nModP)
 	nMod += 1
-	limit := 3
+	limit := 9
 	flag := true
 
 	var photos []Photo
@@ -841,7 +845,7 @@ func handleTag(w http.ResponseWriter, r *http.Request) {
 	st, _ := strconv.Atoi(start)
 	nMod, _ := strconv.Atoi(nModP)
 	nMod += 1
-	limit := 3
+	limit := 9
 
 	var photos []Photo
 	var videos []Video
@@ -1127,7 +1131,7 @@ func getPictures(collName string, field string, userId string, templateName stri
 	s := ""
 	var doc bytes.Buffer
 	var photos []Photo
-	limit := 3
+	limit := 9
 	err := dbConnection.session.DB(db_name).C(collName).Find(bson.M{field: userId}).Skip(start * limit).Limit(limit).All(&photos)
 
 	if err != nil {
@@ -1193,7 +1197,7 @@ func handleAlbums(w http.ResponseWriter, r *http.Request) {
 	st, _ := strconv.Atoi(start)
 	nMod, _ := strconv.Atoi(nModP)
 	nMod += 1
-	limit := 3
+	limit := 9
 
 	fmt.Println(query, " ", start, " ", cType, " ", nModP)
 

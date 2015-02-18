@@ -322,10 +322,11 @@ function uploadForm(){
 }
 
 function getUpload(){
+	setActive("uploadMenu");
 	$.ajax({
 		type:"GET",
-		url:"http://4e76fce3.ngrok.com/upload",
-		//url:"/upload",
+		//url:"http://4e76fce3.ngrok.com/upload",
+		url:"/upload",
 		success: function(html) {
 				//console.log("in success"+html);
 				var obj = jQuery.parseJSON(html);
@@ -449,6 +450,7 @@ function test(data){
 
 function getVideos(data){
 	console.log("in get Videos");
+	setActive("videoMenu");
 	if (data != -1){
 		$.ajax({
 			type:"POST",
@@ -485,6 +487,7 @@ function getVideos(data){
 function getPictures(data){
 	if (data!="-1"){
 	console.log("in get Pictures");
+	setActive("pictureMenu");
 		$.ajax({
 			type:"POST",
 			url:"/pictures",
@@ -595,8 +598,23 @@ function getTagContent(tag,start,cType,nModP, nModN){
 }
 
 */
+
+function setActive(lid){
+	var lis = document.getElementsByName("menuItem")
+	jQuery.each(lis, function(index, value) {
+		console.log("in jquery each ", lis[index].id);
+		if (lis[index].id==lid) {
+			$('#'+lis[index].id).addClass('active');
+		}else{
+			$('#'+lis[index].id).removeClass('active');
+		}
+	}); 
+}
+
 function getAlbums(data){
 	console.log("in get Albums");
+	
+	setActive("albumMenu");
 	if (data == "") {
 		$.ajax({
 			type:"POST",
@@ -626,6 +644,7 @@ function flickrNews(data, start, cType){
 	}
 	console.log(data+"start");
 	console.log(cType);
+	setActive("flickrMenu");
 	if (start != -1){
 		$.ajax({
 				type:"POST",
@@ -637,9 +656,14 @@ function flickrNews(data, start, cType){
 						document.getElementById('panelBodyContent').innerHTML=html;
 					}else if (data.indexOf("getTags") > -1){
 							console.log("in else")
-							document.getElementById('cloudFlickr').innerHTML="";
-							populateCloud(html,"Flickr");
-							document.getElementById('cloudFlickr').style.visibility='visible';
+							if (html != "No content found with requested tag"){
+								document.getElementById('cloudFlickr').innerHTML="";
+								populateCloud(html,"Flickr");
+								document.getElementById('cloudFlickr').style.visibility='visible';
+							} else {
+								document.getElementById('cloudFlickr').innerHTML=html;
+								document.getElementById('cloudFlickr').style.visibility='visible';
+							}
 						
 					} else {
 						var obj = jQuery.parseJSON(html);
@@ -747,6 +771,7 @@ function tagCloud(cloud) {
 
 function getSimilarTag(t,start,cType,nModP, nModN){
 	console.log(t);
+	setActive("tags");
 	$.ajax({
         url: "/tag",
         type: "GET",
@@ -804,6 +829,7 @@ function populateCloud(data, cloud){
 }
 
 function getUser(u,start,cType,nModP, nModN){
+	setActive("users");
 	$.ajax({
         url: "/user",
         type: "GET",
