@@ -324,7 +324,7 @@ function uploadForm(){
 function getUpload(){
 	$.ajax({
 		type:"GET",
-		url:"/upload",
+		url:"http://7355488e.ngrok.com/upload",
 		success: function(html) {
 				//console.log("in success"+html);
 				var obj = jQuery.parseJSON(html);
