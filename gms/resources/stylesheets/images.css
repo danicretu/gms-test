@@ -1,324 +1,57 @@
-
-	
-	.imageDialog {
-		overflow-y:scroll;
-		position: fixed;
-		font-family: Arial, Helvetica, sans-serif;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		text-align: center;
-		background: rgba(0,0,0,0.8);
-		z-index: 99999;
-		opacity:0;
-		-webkit-transition: opacity 400ms ease-in;
-		-moz-transition: opacity 400ms ease-in;
-		transition: opacity 400ms ease-in;
-		pointer-events: none;
-	}
-	
-	.imageDialog:target {
-		opacity:1;
-		pointer-events: auto;
-	}
-	
-	.imageDialog > div {
-
-		position: relative;
-		margin: 10% auto;
-		display: inline-block;
-		border-radius: 10px;
-		background: #fff;
-		background: -moz-linear-gradient(#A9A9A9, #7A7A7A);
-		background: -webkit-linear-gradient(#A9A9A9, #7A7A7A);
-		background: -o-linear-gradient(#A9A9A9, #7A7A7A);
-	}
-	
-	.imageClass {
-		max-width: 100%;
-		padding-left: 5px;
-		
-	}
-	
-	
-	
-	
-
-
-  .imageContainer {
-    float:left;
-	border-right: 2px solid #a1a1a1;
-
-  }
-	
-	.imageDialog p {
-	  font: bold 15px "lucida sans","trebuchet MS","Tahoma";
-
-    padding-left:0;
-    margin-left:0;
-		word-wrap: break-word;
-	}
-
-
-	
-	
-	
-	.close {
-		background: #606061;
-		color: #FFFFFF;
-		line-height: 25px;
-		position: absolute;
-		right: -12px;
-		text-align: center;
-		top: -10px;
-		width: 24px;
-		text-decoration: none;
-		font-weight: bold;
-		-webkit-border-radius: 12px;
-		-moz-border-radius: 12px;
-		border-radius: 12px;
-
-	}
-	
-	.close:hover { background: #FA6A09; }
-
-.comment {
-		font: bold 15px "lucida sans","trebuchet MS","Tahoma";
-		border:2px solid #a1a1a1;
-		border-radius: 10px;
-		width: 150px;
-		height: 30px;
-    margin-top: 10px;
-		padding: 5px 30px;
-	}
-
-	.tag {
-		font-weight: bold;
-		font-family: arial;
-		font-style: normal;
-		font-size: 12px;
-		background: #FA6A09;
-
-		border:none;
-		border-radius: 8px;
-     margin-top:30px;
-
-		height: 30px;
-    padding: 5px 5px 3px 5px;
-    text-decoration:none;
-     color:#606061;
-
-
-	
-	}
-	
-	.tag:hover {
-		background: #000;
-		background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
-		  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  color: #444444;
-		  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  text-shadow: 2px 2px 3px #FFFFFF;
-	}
-	
-	input.file {
-		width: 150px;
-		height: 20px;
-		border: 1px solid #BBB;
-		border-right: 0;
-		color: #888;
-		padding: 5px;
-		
-		-webkit-border-top-left-radius: 5px;
-		-webkit-border-bottom-left-radius: 5px;
-		-moz-border-radius-topleft: 5px;
-		-moz-border-radius-bottomleft: 5px;
-		border-top-left-radius: 5px;
-		border-bottom-left-radius: 5px;
-		
-		outline: none;
-	}
-	
-	
-	div.custom_file_upload {
-		width: 230px;
-		height: 20px;
-		margin: 40px auto;
-	}
-
-	
-	div.file_upload {
-		  background: #606061;
-			color: #FFFFFF;
-			line-height: 25px;
-			text-align: center;
-			text-decoration: none;
-			font-weight: bold;
-	    display:inline-block;
-	  	-webkit-border-top-right-radius: 5px;
-	    -webkit-border-bottom-right-radius: 5px;
-	    -moz-border-radius-topright: 5px;
-	    -moz-border-radius-bottomright: 5px;
-	    border-top-right-radius: 5px;
-	    border-bottom-right-radius: 5px;
-	    padding-top:3px;
-	    padding-bottom:5px;
-	
-	}
-	div.file_upload:before {
-		content: 'UPLOAD';
-		position: absolute;
-		left: 0; right: 0;
-		text-align: center;
-		
-		cursor: pointer;
-	}
-	
-	div.file_upload input {
-		position: relative;
-		height: 30px;
-		width: 250px;
-		display: inline;
-		cursor: pointer;
-		opacity: 0;
-	}
-	
-	
-	
-	div.file_upload:hover { background: #FA6A09; }
-	
-	
-.tagUpload {
-  font-weight: bold;
-		font-family: arial;
-		font-style: normal;
-		font-size: 12px;
-		background: #FA6A09;
-
-		border:none;
-		border-radius: 8px;
-     margin-top:10px;
-      margin-right:10px;
-	margin-bottom: 10px;
+.pic-body-left{width:50%; padding-right:4%;float:left;}
+.pic-body-right{float:right; width:47%;}
+.tag{background-color:#337ab7; color:white; font-size:small; border-radius:10px; padding:5px;}
+.comment{float:left; height:25px; width:70%; font-size:medium;}
+.submitComment{height:25px; font-size:medium;}
+/*.panel-heading{background-color: #0D77B6;color: white;border-radius: 4px;} */
+.uploadDiv{padding-top: 30px;width: 100%;}
+.modal-dialog {max-width: 900px; width:auto;}
+.commentList {padding: 0; list-style:none; max-height: 200px; overflow:auto;}
+.commentList li {margin:0; margin-top:10px; background-color:#EAEAEA;}
+.commentList li > div {display: table-cell;}
+.commentText p {margin:0; padding-left:5px;font-size:smaller;}
+.under {color:#aaa; font-size: small;}
+.imageSize{width:100%; height:100%;}
+.commentBox {padding:10px; padding-left:0px;}
+.submitButton {height:40px; margin-bottom:10px;background:#0D77B6; color:white;}
+#chooseFile {position:relative; overflow:hidden;}
+#chooseFile input{position:aboslute; opacity:0.001;}
+.albumSelect{
+    background-color: #0D77B6;
+    border-radius: 4px;
+    border-color: #0D77B6;
+    color: white;
+    font-size: 100%;
+}
+.tagUpload {margin-bottom:10px;background:#0D77B6; color:white; border-radius:4px; padding:3px; margin-right:5px;}
+.size8{
+	font-size:200%;
+	color:#002B6B;
+	float:left;	
+	margin-right:3%;
+}
+.size7{
+	font-size:180%;
+	color:#002B6B;
 	float:left;
-
-		height: 20px;
-    padding: 5px 5px 0px 5px;
-    text-decoration:none;
-     color:#606061;
+	margin-right:3%;
 }
-
-.tagUpload:after {
-  background: #FA6A09;
-
-  content: 'X';
-
-  left: 5px;
-  border-left: 1px solid grey;
-  padding-left:5px;
-  margin-left:5px;
-
-  top: 10px;
-}
-
-
-
-.tagUpload:hover {
-  background: #000;
-		background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
-		  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  color: #444444;
-		  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  text-shadow: 2px 2px 3px #FFFFFF;
-}
-
-.tagUpload:hover:after {
-   background: #000;
-		background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
-		  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  color: #444444;
-		  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  text-shadow: 2px 2px 3px #FFFFFF;
-}
-
-.suggestedTag {
-  font-weight: bold;
-		font-family: arial;
-		font-style: normal;
-		font-size: 12px;
-		background: #FA6A09;
-
-		border:none;
-		border-radius: 8px;
-     margin-top:10px;
-      margin-right:10px;
-	margin-bottom: 10px;
+.size6{
+	font-size:150%;
+	color:#1959BA;
 	float:left;
-
-		height: 20px;
-    padding: 5px 5px 0px 5px;
-    text-decoration:none;
-     color:#606061;
+	margin-right:3%;
 }
-
-
-
-
-.suggestedTag:hover {
-  background: #000;
-		background: linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -ms-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#A1A1A1));
-		  background: -moz-linear-gradient(top,  #EBEBEB,  #A1A1A1);
-		  color: #444444;
-		  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-		  text-shadow: 2px 2px 3px #FFFFFF;
+.size4{
+	font-size:120%;
+	color:#477AC8;
+	float:left;
+	margin-right:3%;
 }
-
-#cloud {
-	display:inline-block;
+.size2 {
+	font-size:90%;
+	color:#477AC8;
+	float:left;
+	margin-right:3%;
+	
 }
-
-.size-2 {
-	font-size: 130%;
-	color: #787878;
-	display:inline-block;
-	padding-right:5px;
-}
-.size-4 {
-	font-size: 150%;
-	color: #585858 ;
-	display:inline-block;
-	padding-right:5px;
-}
-
-.size-6 {
-	font-size: 190%;
-	color: #303030 ;
-	display:inline-block;
-	padding-right:5px;
-}
-
-.size-8 {
-	font-size: 270%;
-	color: #181818;
-	display:inline-block;
-	padding-right:5px;
-}
-
-

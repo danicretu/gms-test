@@ -3,7 +3,8 @@ package main
 import (
 	"code.google.com/p/goauth2/oauth"
 	"encoding/json"
-	"fmt"
+	//"github.com/gorilla/sessions"
+	"gopkg.in/mgo.v2/bson"
 	"html/template"
 	"io/ioutil"
 	"net/http"
@@ -33,7 +34,6 @@ type UserF struct {
 	Name        string
 	Given_Name  string
 	Family_Name string
-	Link        string
 	Picture     string
 	Locale      string
 }
@@ -57,8 +57,6 @@ func authenticateFacebook() {
 func handleAuthorize(w http.ResponseWriter, r *http.Request) {
 	//Get the Facebook URL which shows the Authentication page to the user
 	url := oauthCfgF.AuthCodeURL("")
-
-	fmt.Print(url)
 
 	//redirect user to that page
 	http.Redirect(w, r, url, http.StatusFound)
@@ -85,16 +83,29 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(resp.Body)
 
-	fmt.Print(string(body))
-
 	json.Unmarshal(body, &user)
-	fmt.Println(user.Id)
-	fmt.Println(user.Given_Name)
-	fmt.Println(user.Family_Name)
-	fmt.Println(user.Picture)
-	fmt.Println(user.Locale)
-	fmt.Println(user.Name)
-	fmt.Println("nope")
 
-	userInfoTemplate.Execute(w, &user)
+	var existing *User
+	dbConnection.session.DB("gmsTry").C("user").Find(bson.M{"fId": user.Id}).One(&existing)
+	session, _ := store.Get(r, "cookie")
+	if existing != nil {
+
+		session.Values["user"] = existing.Id
+		session.Save(r, w)
+	} else {
+
+		id := bson.NewObjectId()
+
+		newUser := User{id, user.Given_Name, user.Family_Name, "", "", "", user.Id, "", user.Id}
+		add(dbConnection, newUser)
+		createDefaultAlbum(dbConnection, newUser.Id, user.Given_Name+" "+user.Family_Name)
+
+		session.Values["user"] = newUser.Id
+		session.Save(r, w)
+
+	}
+
+	authenticated, _ := template.ParseFiles("pictures2.html")
+	authenticated.Execute(w, findUser(dbConnection, session.Values["user"].(string)))
+
 }
