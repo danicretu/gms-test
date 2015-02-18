@@ -349,7 +349,7 @@ func handleVideos(w http.ResponseWriter, r *http.Request) {
 	var videos []Video
 	err := dbConnection.session.DB(db_name).C("videos").Find(bson.M{"owner": u.Id}).Skip(start * limit).Limit(limit).All(&videos)
 
-	if len(videos) > 0 {
+	if len(videos) > 0 || start == 0 {
 		data := struct {
 			PageP int
 			PageN int
@@ -1133,7 +1133,7 @@ func getPictures(collName string, field string, userId string, templateName stri
 	if err != nil {
 		fmt.Println(err)
 	}
-	if len(photos) > 0 {
+	if len(photos) > 0 || start == 0 {
 		photoData := struct {
 			PageN int
 			PageP int

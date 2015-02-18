@@ -3,8 +3,9 @@ package main
 import (
 	"code.google.com/p/goauth2/oauth"
 	"encoding/json"
+	//"fmt"
 	"gopkg.in/mgo.v2/bson"
-	"html/template"
+	//"html/template"
 	"io/ioutil"
 	"net/http"
 )
@@ -102,6 +103,6 @@ func handleOAuth2CallbackG(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	authenticated, _ := template.ParseFiles("pictures2.html")
-	authenticated.Execute(w, findUser(dbConnection, session.Values["user"].(string)))
+	http.Redirect(w, r, "/authenticated", http.StatusFound)
+	return
 }

@@ -144,7 +144,7 @@ func getFlickrImages(tag string, start int) []FlickrImage {
 	source := "/home/go-programs/flickrData/"
 	dbConnection = NewMongoDBConn()
 	_ = dbConnection.connectFlickr()
-	c := dbConnection.session.DB("gmsTry").C("gmsNewsScottish")
+	c := dbConnection.session.DB(flickrDB).C("gmsNewsScottish")
 	var flickrImage []FlickrImage
 	var myarr = []string{tag}
 	limit := 8
@@ -167,7 +167,7 @@ func getFlickrImages(tag string, start int) []FlickrImage {
 func getNews(tag string, start int) []News {
 	dbConnection = NewMongoDBConn()
 	_ = dbConnection.connectFlickr()
-	c := dbConnection.session.DB("gmsTry").C("gmsNewsScottish")
+	c := dbConnection.session.DB(flickrDB).C("gmsNewsScottish")
 	var news []News
 	var newsKey = []string{tag}
 	limit := 8
