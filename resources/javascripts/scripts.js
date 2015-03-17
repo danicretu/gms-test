@@ -7,6 +7,8 @@ $(document).ready(function() {
 	$('#menuButton').on('click', function(event){
 						console.log("button pressed");
 						$('div.sideMenu').removeClass('hidden-xs');
+						$('div.sideMenu').removeClass('hidden-sm');
+						$('div.sideMenu').removeClass('hidden-md');
 					});
 	
 
