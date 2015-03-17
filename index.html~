@@ -400,7 +400,7 @@
 					</p> 
 				
 					<!-- <a href="http://4e76fce3.ngrok.com/cmsHome">Proceed to the website</a> -->
-	            		<a href="http://mirugc.dcs.gla.ac.uk/cmsHome" style="color:white;">Proceed to the website</a>
+	            		<a href="/cmsHome" style="color:white;">Proceed to the website</a>
 	              	
                </div>
              </div>          
