@@ -88,10 +88,13 @@ func GetTwitterToken(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal(bits, &user)
 
+	dbConnection = NewMongoDBConn()
+	sess := dbConnection.connect()
+
 	var existing *User
-	dbConnection.session.DB("gmsTry").C("user").Find(bson.M{"tId": user.Id_Str}).One(&existing)
+	sess.DB(db_name).C("user").Find(bson.M{"tId": user.Id_Str}).One(&existing)
 	session, _ := store.Get(r, "cookie")
-	if existing != nil {
+	if existing != nil && existing.Id != "" {
 		session.Values["user"] = existing.Id
 		session.Save(r, w)
 	} else {
@@ -99,13 +102,15 @@ func GetTwitterToken(w http.ResponseWriter, r *http.Request) {
 		id := bson.NewObjectId()
 
 		newUser := User{id, user.Name, "", "", "", "", "", user.Id_Str, user.Id_Str}
-		add(dbConnection, newUser)
-		createDefaultAlbum(dbConnection, newUser.Id, user.Name)
+		add(newUser)
+		createDefaultAlbum(newUser.Id, user.Name)
 
 		session.Values["user"] = newUser.Id
 		session.Save(r, w)
 
 	}
+
+	defer sess.Close()
 
 	http.Redirect(w, r, "/authenticated", http.StatusFound)
 	return

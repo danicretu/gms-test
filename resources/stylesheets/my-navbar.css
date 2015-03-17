@@ -44,7 +44,7 @@ and (orientation : portrait) {
 /* Desktops and laptops ----------- */
 @media only screen 
 and (min-width : 1224px) {
-	.navbar-my .navbar-brand {font-size:17px;}
+	.navbar-my .navbar-brand {font-size:38px;}
 }
 
 /* Large screens ----------- */
@@ -87,7 +87,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 .navbar-my .navbar-brand{
 	color:white;
 	font-family: AmericanType;
-	font-size:38px;
+	/*font-size:38px; */
 }
 .navbar-my .navbar-brand:hover .navbar-my .navbar-brand:focus{
 	color:white;
@@ -117,6 +117,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
 	background-color:#ddd;
 }
 .navbar-my .navbar-toggle .icon-bar{
+	background-color:white;
+}
+
+.navbar-my .open .dropdown-menu {
 	background-color:white;
 }
 .navbar-my .navbar-collapse,.navbar-my .navbar-form{
@@ -217,6 +221,15 @@ only screen and (min-device-pixel-ratio : 1.5) {
     padding-bottom: 50px;
     background-color: #0D77B6;
 }
+#userGenerated{
+	height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding-top: 50px; 
+    padding-bottom: 50px;
+    background-color: #0D77B6;
+}
 #recentImages {  
     height: auto;  
     margin: 0 auto; 
@@ -224,7 +237,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative;
 	 padding-top: 50px; 
     padding-bottom: 50px;
-    background-color: white;
+    background-color: #0D77B6;
 }
 #popularImages {  
     height: auto;  
@@ -233,7 +246,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative; 
     padding-top: 50px; 
     padding-bottom: 50px;
-    background-color: #0D77B6;
+    background-color: white;
 }
 
 #recentVideos {  
@@ -243,7 +256,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative;
 	 padding-top: 50px; 
     padding-bottom: 50px;
-    background-color: white;
+    background-color: #0D77B6;
 }
 
 #popularVideos {  
@@ -253,7 +266,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative; 
     padding-top: 50px; 
     padding-bottom: 50px;
-    background-color: #0D77B6;
+    background-color: white;
 }
 
 #news {  
@@ -263,7 +276,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative;
 	 padding-top: 50px; 
     padding-bottom: 50px;
-    background-color: white;
+    background-color: #0D77B6;
 }
 
 #flickrImages {  
@@ -273,8 +286,20 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative; 
     padding-top: 50px; 
     padding-bottom: 50px;
+    background-color: white;
+}
+
+
+#map {  
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding-top: 50px; 
+    padding-bottom: 50px;
     background-color: #0D77B6;
 }
+
 .hero-unit {
 			background-color: #fff;
 		    box-shadow: 0 0 20px rgba(0,0,0,0.1);

@@ -1,14 +1,18 @@
 <div id = "newsHelper">
+<div class="panel-heading sectionHeader" style="padding-bottom:0; margin-bottom:0;">
+    <h3 class="headText personalHead" style="font-size: 24px">News</h3>
+</div>
+<h4 class="headText personalSubtitle">8 news articles tagged with <b>'{{.Tag}}'</b> are displayed below<br>Press <b>'Next'</b> to explore more</h4>
 <ul class="row" style="padding:0 0 0 0;margin:0 0 0 0;">
 					{{range $index2, $element2 := .N}}
 												
 													
-													<li class="col-lg-3 col-md-2 col-sm-3 col-xs-4" style="list-style:none;margin-bottom:25px;">
+													<li style="list-style:none;margin-bottom:25px;">
 														<a href={{$element2.URL}}>{{$element2.Title}}</a>
 														
-														<a id="{{$element2.URL}}" name="lia" href="#" data-toggle="modal" data-target="#picModal{{$index2}}news">
+														<!-- <a id="{{$element2.URL}}" name="lia" href="#" data-toggle="modal" data-target="#picModal{{$index2}}news">
 								          					<img class="img-thumbnail" src="{{$element2.ImageUrl}}">
-								        					</a>
+								        					</a> -->
 														
 													</li>
 													{{if $element2.ImageUrl}}		
@@ -33,6 +37,8 @@
 													{{end}}
 											{{end}}
 	</ul>
-	<a href="#" id="previous" onclick="return flickrNews({{.Tag}},{{.PageIP}},'news')">Prev</a>
-	<a href="#" id="next"  onclick="return flickrNews({{.Tag}},{{.PageIN}},'news')">Next</a> 
+	<div class="nextPrev">
+	<a href="#flickrNews?{{.Tag}},{{.PageIP}},news" id="previous">Prev</a>
+	<a href="#flickrNews?{{.Tag}},{{.PageIN}},news" id="next" >Next</a> 
+	</div>
 </div>

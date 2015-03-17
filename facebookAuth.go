@@ -4,6 +4,7 @@ import (
 	"code.google.com/p/goauth2/oauth"
 	"encoding/json"
 	//"github.com/gorilla/sessions"
+	"fmt"
 	"gopkg.in/mgo.v2/bson"
 	"html/template"
 	"io/ioutil"
@@ -18,24 +19,21 @@ var (
 
 var oauthCfgF = &oauth.Config{
 
-	ClientId: "853319121375165",
+	ClientId: "583627198440666",
 
-	ClientSecret: "36e6f25d4b121b11ace2d812c12c67af",
+	ClientSecret: "0554c954561004b6b0f646f31b6dc387",
 
 	AuthURL: "https://www.facebook.com/dialog/oauth",
 
 	TokenURL: "https://graph.facebook.com/oauth/access_token",
 
-	RedirectURL: "http://localhost:8080/oauth2callbackF",
+	RedirectURL: "http://mirugc.dcs.gla.ac.uk/oauth2callbackF",
 }
 
 type UserF struct {
-	Id          string
-	Name        string
-	Given_Name  string
-	Family_Name string
-	Picture     string
-	Locale      string
+	Id          string `json:"id"`
+	Given_Name  string `json:"first_name"`
+	Family_Name string `json:"last_name"`
 }
 
 const profileInfoURLF = "https://graph.facebook.com/me?"
@@ -83,27 +81,38 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(resp.Body)
 
+	fmt.Println(string(body), "    *********************")
+
 	json.Unmarshal(body, &user)
 
+	fmt.Println(user, "    *********************")
+
+	dbConnection = NewMongoDBConn()
+	sess := dbConnection.connect()
+
 	var existing *User
-	dbConnection.session.DB("gmsTry").C("user").Find(bson.M{"fId": user.Id}).One(&existing)
+	sess.DB(db_name).C("user").Find(bson.M{"fId": user.Id}).One(&existing)
 	session, _ := store.Get(r, "cookie")
-	if existing != nil {
+
+	if existing != nil && existing.Id != "" {
 
 		session.Values["user"] = existing.Id
 		session.Save(r, w)
 	} else {
 
+		fmt.Println("in else " + db_name)
 		id := bson.NewObjectId()
 
 		newUser := User{id, user.Given_Name, user.Family_Name, "", "", "", user.Id, "", user.Id}
-		add(dbConnection, newUser)
-		createDefaultAlbum(dbConnection, newUser.Id, user.Given_Name+" "+user.Family_Name)
+		add(newUser)
+		createDefaultAlbum(newUser.Id, user.Given_Name+" "+user.Family_Name)
 
 		session.Values["user"] = newUser.Id
 		session.Save(r, w)
 
 	}
+
+	defer sess.Close()
 
 	http.Redirect(w, r, "/authenticated", http.StatusFound)
 	return
